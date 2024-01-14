@@ -1,0 +1,127 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	height: 100vh;
+	background-color: #222;
+}
+
+body::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(#08ff12, #0791ff);
+	mix-blend-mode: multiply;
+	pointer-events: none;
+	z-index: 10;
+}
+
+/* clock frame */
+
+.clock {
+	position: relative;
+	width: 500px;
+	height: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(255, 255, 255, 0.05);
+	border-radius: 50%;
+	box-shadow: 0 0 0 2px #fff5, 0 0 0 20px #333, 0 0 0 22px #fff, 0 0 50px #fff,
+		0 0 450px #fff;
+	z-index: 9;
+	backdrop-filter: blur(50px);
+	-webkit-backdrop-filter: blur(50px);
+}
+
+/* niddle common style */
+
+.niddle {
+	position: absolute;
+	border-radius: 2px;
+	background: linear-gradient(0deg, transparent, #fff);
+	transform-origin: center;
+	transform: translate(-50%, -50%);
+}
+
+/* second niddle */
+
+#niddle1 {
+	width: 2px;
+	height: 170px;
+}
+
+/* minute niddle */
+
+#niddle2 {
+	width: 3px;
+	height: 150px;
+}
+
+/* hour niddle */
+
+#niddle3 {
+	width: 4px;
+	height: 130px;
+}
+
+/* clock numbers */
+
+ul li {
+	position: absolute;
+	top: 10px;
+	list-style: none;
+	transform-origin: 0 240px;
+	transform: rotate(
+		calc(30deg * var(--i))
+	); /* --i -> variable defined in html file */
+	font-size: 2.5rem;
+	font-weight: bold;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+ul li span {
+	display: block;
+	transform: translate(-50%, 0) rotate(calc(-30deg * var(--i)));
+	/* background-color: #fff; */
+	transform-origin: center;
+	color: #fff;
+}
+
+/* rain background frame */
+
+.rain {
+	position: absolute;
+	height: 100vh;
+	width: 100vw;
+	z-index: -1;
+}
+
+/* rain drops */
+
+i {
+	position: absolute;
+	height: 200px;
+	background: linear-gradient(transparent, #fff);
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	animation: rainDrop 5s linear infinite;
+}
+
+/* rain drop animation */
+
+@keyframes rainDrop {
+	from {
+		transform: translateY(-200px);
+	}
+	to {
+		transform: translateY(calc(100vh + 200px));
+	}
+}
