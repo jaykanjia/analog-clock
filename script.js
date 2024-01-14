@@ -26,19 +26,20 @@ const setClock = () => {
 		6 * second
 	}deg) translate(-50%,-50%)`;
 
-	if (second == 60) {
-		second = 0;
+	if (second === 60) {
+		second = 1;
+		// because updates after 1 sec
 		minute++;
 	} else {
 		second++;
 	}
-	if (minute == 60) {
+	if (minute === 60) {
 		minute = 0;
 	}
-	if (minute % 12 == 0 && second == 0) {
+	if (minute % 12 === 0 && second === 0) {
 		hour += 0.2;
 	}
-	if (hour == 12) {
+	if (hour === 12) {
 		hour = 0;
 	}
 };
